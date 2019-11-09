@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{DEFC12A6-1FB8-415C-ADAA-3319A783A5D3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>DigitalSafetyDepositClass</RootNamespace>
-    <AssemblyName>DigitalSafetyDepositClass</AssemblyName>
+    <RootNamespace>DigitalSafetyDepositBoxClass</RootNamespace>
+    <AssemblyName>DigitalSafetyDepositBoxClass</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -65,6 +65,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

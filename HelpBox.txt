@@ -1,0 +1,12 @@
+LENGTH
++ Usernames must be 5 - 60 characters long
++Passwords must be 12 - 24 characters long
+
+SPECIAL CHARACTERS
++ Usernames can contain any combination of letters
+  (Aa - Zz), numbers (0 - 9), or the following
+  characters ( _ @ . )
++ Passwords must contain any combination of letters
+  (Aa - Zz), numbers (0 - 9), and 2 or more ofthe
+  following characters ( !@#$()%&_ )
+
