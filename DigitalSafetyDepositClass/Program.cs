@@ -21,9 +21,10 @@ namespace DigitalSafetyDepositClass
             Application.SetCompatibleTextRenderingDefault(false);
 
 
-            Application.Run(new LoginForm());
-
-
+            //Application.Run(new LoginForm());
+            Application.Run(new ProfileMain());
+            //Application.Run(new InformationChange());
+            //Application.Run(new PasswordChange());
         }
 
         static internal bool textCheck(String text, string pattern)

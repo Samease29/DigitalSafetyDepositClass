@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Profile_Interface
+namespace DigitalSafetyDepositClass
 {
     public partial class PasswordChange : Form
     {
@@ -40,6 +40,12 @@ namespace Profile_Interface
         private void button2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void SupportBt_Click(object sender, EventArgs e)
+        {
+            String helpText = "LENGTH\n+ Passwords must be 12 - 24 characters long\n\nSPECIAL CHARACTERS\n+ Usernames can contain any combination of letters\n  (Aa -Zz), numbers(0 - 9), or the following\n  characters( _@. )\n+ Passwords must contain any combination of letters\n  (Aa -Zz), numbers(0 - 9), and 2 or more of the\nfollowing characters ( !@#$()%&_ )";
+            MessageBox.Show(helpText, "DIGITAL SAFETY DEPOSIT BOX HELP");
         }
     }
 }
