@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Profile_Interface
+namespace DigitalSafetyDepositClass
 {
     public partial class ProfileMain : Form
     {
@@ -65,22 +65,27 @@ namespace Profile_Interface
             textBox4.Text = "Your gmail/yahoo or whatever you use, if you have one";
             textBox6.Text = "This account type: Super Admin/Admin/Normal User.";
             UserIDField.Text = "#123456";
-            InformationChange infoChagWindow = new InformationChange();
-            infoChagWindow.Show();
-            this.Hide();
+            //InformationChange infoChagWindow = new InformationChange();
+            //infoChagWindow.Show();
+            //this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
 
-            PasswordChange PwcWindow = new PasswordChange();
-            PwcWindow.Show();
-            this.Hide();
+            //PasswordChange PwcWindow = new PasswordChange();
+            //PwcWindow.Show();
+            //this.Hide();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void ProfileMain_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
