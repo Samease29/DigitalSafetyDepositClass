@@ -46,6 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBDSModel\Account.cs" />
+    <Compile Include="DBDSModel\Admin.cs" />
+    <Compile Include="DBDSModel\Container.cs" />
+    <Compile Include="DBDSModel\File.cs" />
+    <Compile Include="DBDSModel\User.cs" />
     <Compile Include="InformationChange.cs">
       <SubType>Form</SubType>
     </Compile>
