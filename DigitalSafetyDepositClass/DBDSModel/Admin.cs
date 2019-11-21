@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DSDBModel
 {
-    class Admin
+    public class Admin
     {
     }
 }
