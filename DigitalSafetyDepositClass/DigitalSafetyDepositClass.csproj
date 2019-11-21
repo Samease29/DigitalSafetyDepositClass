@@ -46,6 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBDSModel\Account.cs" />
+    <Compile Include="DBDSModel\Admin.cs" />
+    <Compile Include="DBDSModel\Container.cs" />
+    <Compile Include="DBDSModel\File.cs" />
+    <Compile Include="DBDSModel\User.cs" />
     <Compile Include="InformationChange.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,8 +77,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="InformationChange.resx">
+      <DependentUpon>InformationChange.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginPage.resx">
       <DependentUpon>LoginPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PasswordChange.resx">
+      <DependentUpon>PasswordChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProfileMain.resx">
+      <DependentUpon>ProfileMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

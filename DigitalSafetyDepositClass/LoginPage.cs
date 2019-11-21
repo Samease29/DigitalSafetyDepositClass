@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 
 namespace DigitalSafetyDepositClass
 {
@@ -22,26 +21,17 @@ namespace DigitalSafetyDepositClass
         {
             String username = textBox1.Text;
             String password = textBox2.Text;
-            Boolean userCharMatch = Regex.IsMatch(username, "^(?=.{5,60}$)(?=.*[\\da-zA-Z@._])");
-            Boolean passCharMatch = Regex.IsMatch(password, "^(?=.{12,24}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$()%&_]{2,})");
-            if (!userCharMatch)
-            {
-                textBox1.BackColor = Color.Red;
-            } 
-            else
-            {
-                textBox1.BackColor = Color.White;
-            }
+            Boolean userCharMatch = Program.textCheck(username, "^(?=.{5,60}$)(?=.*[\\da-zA-Z@._])");
+            Boolean passCharMatch = Program.textCheck(password, "^(?=.{12,24}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$()%&_]{2,})");
+            Boolean proceed1 = Program.setTextBoxColor(textBox1, !userCharMatch, username.Contains(" "));
+            Boolean proceed2 = Program.setTextBoxColor(textBox2, !passCharMatch, password.Contains(" "));
 
-            if (!passCharMatch)
+            if(proceed1 & proceed2){
+            
+            }else 
             {
-                textBox2.BackColor = Color.Red;
+            
             }
-            else 
-            {
-                textBox2.BackColor = Color.White;
-            }
-
         }
 
         private void button2_Click(object sender, EventArgs e)
