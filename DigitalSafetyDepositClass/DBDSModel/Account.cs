@@ -10,5 +10,14 @@ namespace DSDBModel
         String password;
         String firstName;
         String lastName;
+
+        static internal bool validateUser(String user, String pass)
+        {
+
+            return true;
+        }
+
     }
+
+    
 }
