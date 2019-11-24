@@ -4,11 +4,11 @@ using System.Text;
 
 namespace DSDBModel
 {
-   public class Account
+   class Account
     {
-        String username;
-        String password;
-        String firstName;
-        String lastName;
+        protected String username;
+        protected String password;
+        protected String firstName;
+        protected String lastName;
     }
 }
