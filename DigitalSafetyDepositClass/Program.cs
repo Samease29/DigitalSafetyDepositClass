@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Text.RegularExpressions;
+using System.Configuration;
+using DSDBModel;
 
 //For the test
 namespace DigitalSafetyDepositClass
@@ -45,7 +47,8 @@ namespace DigitalSafetyDepositClass
             }
         }
 
-        static internal bool checkUser() {
+        static internal bool checkUser(String username, String password) {
+            User.verifyUserPass(username,password);
 
             return true;
         }

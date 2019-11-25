@@ -4,12 +4,16 @@ using System.Text;
 
 namespace DSDBModel
 {
-    class Account
+    internal class Account
     {
-        String username;
-        String password;
-        String firstName;
-        String lastName;
+        protected int userID { get; set; }
+        protected String username { get; set; }
+        protected String password { get; set; }
+        protected String firstName { get; set; }
+        protected String lastName { get; set; }
+        protected String email { get; set; }
+        protected bool admin { get; set; }
+        protected String userIsEmail { get; set; }
 
         static internal bool validateUser(String user, String pass)
         {

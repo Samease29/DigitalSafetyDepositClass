@@ -32,8 +32,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -48,6 +51,7 @@
   <ItemGroup>
     <Compile Include="DBDSModel\Account.cs" />
     <Compile Include="DBDSModel\Admin.cs" />
+    <Compile Include="DBDSModel\Helper.cs" />
     <Compile Include="DBDSModel\Container.cs" />
     <Compile Include="DBDSModel\File.cs" />
     <Compile Include="DBDSModel\User.cs" />

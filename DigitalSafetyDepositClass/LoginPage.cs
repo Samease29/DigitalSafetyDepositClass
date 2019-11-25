@@ -27,10 +27,12 @@ namespace DigitalSafetyDepositClass
             Boolean proceed2 = Program.setTextBoxColor(textBox2, !passCharMatch, password.Contains(" "));
 
             if(proceed1 & proceed2){
-            
-            }else 
-            {
-            
+                bool result = Program.checkUser(username, password);
+                if(result == true) 
+                {
+
+                    this.Close();
+                }
             }
         }
 
