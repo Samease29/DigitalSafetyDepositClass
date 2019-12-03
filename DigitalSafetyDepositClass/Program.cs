@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DigitalSafetyDepositBoxClass;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,9 +20,10 @@ namespace DigitalSafetyDepositClass
 
 
             //Application.Run(new LoginForm());
-            Application.Run(new ProfileMain());
+            //Application.Run(new ProfileMain());
             //Application.Run(new InformationChange());
-            //Application.Run(new PasswordChange());
+            /*Application.Run(new PasswordChange());*/
+            Application.Run(new Regis());
         }
     }
 }
