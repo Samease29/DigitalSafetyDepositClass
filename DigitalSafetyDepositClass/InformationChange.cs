@@ -35,13 +35,19 @@ namespace DigitalSafetyDepositClass
         {
             if(checkBox1.Checked == true)
             {
+
+                UnameTextBox.ReadOnly = true;
+                UnameTextBox.Text = EmailTextBox.Text;
                 //UnameTextBox.Text = EmailTextBox.Text;
                 UnameTextBox.ReadOnly = true;
+
             }
 
             if(checkBox1.Checked == false)
             {
                 UnameTextBox.ReadOnly = false;
+
+                UnameTextBox.Text = "";
             }
         }
 
