@@ -46,6 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBDSModel\Account.cs" />
+    <Compile Include="DBDSModel\Admin.cs" />
+    <Compile Include="DBDSModel\Container.cs" />
+    <Compile Include="DBDSModel\File.cs" />
+    <Compile Include="DBDSModel\User.cs" />
     <Compile Include="InformationChange.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,12 +77,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Regis.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Regis.Designer.cs">
-      <DependentUpon>Regis.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="InformationChange.resx">
       <DependentUpon>InformationChange.cs</DependentUpon>
     </EmbeddedResource>
