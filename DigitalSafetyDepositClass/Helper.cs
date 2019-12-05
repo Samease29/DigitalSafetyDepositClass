@@ -22,6 +22,9 @@ namespace DigitalSafetyDepositBoxClass
             return Regex.IsMatch(text, pattern);
         }
 
+        /*This method takes a Textbox and two boolean values. If either of the boolean values are true, the
+         * color of the Textbox is set to Red. If both are false, the color of the Textbox is set to white.
+         */
         static internal bool setTextBoxColor(TextBox tBox, bool match1, bool match2)
         {
             if (match1 | match2)

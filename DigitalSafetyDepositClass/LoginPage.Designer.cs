@@ -42,7 +42,7 @@
             this.SuspendLayout();
             // 
             // textBox1
-            //
+            // 
             this.textBox1.Location = new System.Drawing.Point(193, 158);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Name = "textBox1";
@@ -51,7 +51,7 @@
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // button1
-            //
+            // 
             this.button1.Location = new System.Drawing.Point(249, 230);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
@@ -62,7 +62,7 @@
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox2
-            //
+            // 
             this.textBox2.Location = new System.Drawing.Point(193, 186);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox2.Name = "textBox2";
@@ -72,7 +72,7 @@
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // button2
-            //
+            // 
             this.button2.Location = new System.Drawing.Point(249, 266);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
@@ -116,13 +116,14 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(133, 326);
+            this.linkLabel1.Location = new System.Drawing.Point(239, 310);
             this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(124, 16);
             this.linkLabel1.TabIndex = 7;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Forgot user_name?";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // linkLabel2
             // 

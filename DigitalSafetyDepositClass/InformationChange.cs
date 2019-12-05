@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using DigitalSafetyDepositBoxClass;
 
 namespace DigitalSafetyDepositClass
 {
@@ -33,17 +34,16 @@ namespace DigitalSafetyDepositClass
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkBox1.Checked == true)
+            if(MatchEmailCheckBox.Checked == true)
             {
 
                 UnameTextBox.ReadOnly = true;
                 UnameTextBox.Text = EmailTextBox.Text;
-                //UnameTextBox.Text = EmailTextBox.Text;
                 UnameTextBox.ReadOnly = true;
 
             }
 
-            if(checkBox1.Checked == false)
+            if(MatchEmailCheckBox.Checked == false)
             {
                 UnameTextBox.ReadOnly = false;
 
@@ -58,26 +58,91 @@ namespace DigitalSafetyDepositClass
 
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
-            if(checkBox1.Checked == true)
-            {
-                UnameTextBox.Text = EmailTextBox.Text;
-            }
-            String Username = UnameTextBox.Text;
-            Boolean userCharMatch = Regex.IsMatch(Username, "^(?=.{5,60}$)(?=.*[\\da-zA-Z@._])");
+            String username = UnameTextBox.Text;
+            String password = PassTextBox.Text;
+            String email = EmailTextBox.Text;
+            String firstName = FnameTextBox.Text;
+            String lastName = LnametextBox.Text;
+            String confirmUsername = ConfirmUsername.Text;
+            String confirmPassword = ConfirmPassword.Text;
+            Boolean usernameIsEmail = MatchEmailCheckBox.Checked;
 
-            if (!userCharMatch)
+            Boolean proceed5 = Helper.isValidEmail(email);
+
+
+            Boolean passCharMatch = Helper.textCheck(password, "^(?=.{12,24}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$()%&_]{2,})");
+            Boolean firstNameCharMatch = Helper.textCheck(firstName, "^[a-zA-Z]+$");
+            Boolean lastNameCharMatch = Helper.textCheck(lastName, "^[a-zA-Z]+$");
+            Boolean confirmUserCharMatch = Helper.textCheck(confirmUsername, "^(?=.{5,60}$)(?=.*[\\da-zA-Z@._])");
+            Boolean confirmPassCharMatch = Helper.textCheck(confirmPassword, "^(?=.{12,24}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$()%&_]{2,})");
+            Boolean proceed1 = false;
+            Boolean proceed2 = Helper.setTextBoxColor(PassTextBox, !passCharMatch, password.Contains(" "));
+            Boolean proceed3 = Helper.setTextBoxColor(FnameTextBox, !firstNameCharMatch, firstName.Contains(" "));
+            Boolean proceed4 = Helper.setTextBoxColor(LnametextBox, !lastNameCharMatch, lastName.Contains(" "));
+            Boolean proceed6 = Helper.setTextBoxColor(ConfirmUsername, !confirmUserCharMatch, confirmUsername.Contains(" "));
+            Boolean proceed7 = Helper.setTextBoxColor(ConfirmPassword, !confirmPassCharMatch, confirmPassword.Contains(" "));
+            Helper.setTextBoxColor(EmailTextBox, proceed5, false);
+
+            if (!proceed5 && usernameIsEmail)
             {
-                UnameTextBox.BackColor = Color.Red;
+                Helper.setTextBoxColor(EmailTextBox, true, true);
+                Helper.setTextBoxColor(UnameTextBox, true, true);
+                MessageBox.Show("Changed Information Not Valid! Please Try Again!", "INFORMATION CHANGE FAILED");
+                return;
+            }
+            if (usernameIsEmail)
+            {
+                username = email;
+            }
+            if (!proceed5 && email.Equals(""))
+            {
+                proceed5 = true;
+                Boolean userCharMatch = Helper.textCheck(username, "^(?=.{5,60}$)(?=.*[\\da-zA-Z@._])");
+                proceed1 = Helper.setTextBoxColor(UnameTextBox, !userCharMatch, username.Contains(" "));
             }
             else
             {
-                UnameTextBox.BackColor = Color.White;
+                Boolean userCharMatch = Helper.textCheck(username, "^(?=.{5,60}$)(?=.*[\\da-zA-Z@._])");
+                proceed1 = Helper.setTextBoxColor(UnameTextBox, !userCharMatch, username.Contains(" "));
+            }
+
+
+            if (true)
+            {
+                bool result = Program.changeUserInformation(username, password, usernameIsEmail, email, firstName, lastName, confirmUsername, confirmPassword);
+                if (result == true)
+                {
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Changed Information Invalid! Please Try Again!", "INFORMATION CHANGE FAILED");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Changed Information Invalid! Please Try Again!", "INFORMATION CHANGE FAILED");
             }
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EmailTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

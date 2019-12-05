@@ -24,19 +24,28 @@ namespace DigitalSafetyDepositClass
         [STAThread]
         static void Main()
         {
-            Application.Run(new Regis());
+            bool firstRun = true;
             int currentUserID = 0;
+
+            
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+
+            
+            while (isAdminUnchanged())
+            {
+                InformationChange userInfoChangeForm = new InformationChange();
+                Application.Run(userInfoChangeForm);
+            }
+            
+            Regis regisForm = new Regis();
+            Application.Run(regisForm);
             LoginForm userLoginForm = new LoginForm();
             Application.Run(userLoginForm);
             currentUserID = userLoginForm.currentUser;
-            Console.WriteLine(currentUserID);
-            Console.ReadLine();
-			
-            Application.Run(new Regis());
-            Application.Run(new ProfileMain());
+            //Application.Run(new ProfileMain());
         }
 
         static internal bool registerAccount(String username, String password, bool userIsEmail, String email, String firstName, String lastName) 
@@ -56,6 +65,23 @@ namespace DigitalSafetyDepositClass
             return DataAccess.testUserVerification(username, password);
         }
 
-        
+        static internal bool changeUserInformation(String username, String password, bool userIsEmail, String email, String firstName, String lastName, String confirmUsername, String confirmPassword)
+        {
+            username = Regex.Replace(username, "(\\\\n|\\\\r|'|\\/\\\\)+", "");
+            password = Regex.Replace(password, "(\\\\n|\\\\r|'|\\/\\\\)+", "");
+            email = Regex.Replace(email, "(\\\\n|\\\\r|'|\\/\\\\)+", "");
+            firstName = Regex.Replace(firstName, "(\\\\n|\\\\r|'|\\/\\\\)+", "");
+            lastName = Regex.Replace(lastName, "(\\\\n|\\\\r|'|\\/\\\\)+", "");
+            confirmUsername = Regex.Replace(username, "(\\\\n|\\\\r|'|\\/\\\\)+", "");
+            confirmPassword = Regex.Replace(password, "(\\\\n|\\\\r|'|\\/\\\\)+", "");
+            return DataAccess.testUpdateUserInformation(username, password, userIsEmail, email, firstName, lastName, confirmUsername, confirmPassword);
+        }
+
+        static internal bool isAdminUnchanged() 
+        {
+            return DataAccess.testAdminUnchanged();
+        }
     }
+
+
 }

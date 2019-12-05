@@ -28,7 +28,7 @@ namespace DigitalSafetyDepositBoxClass.DBDSModel
         [Table(Name = "USERS")]
         public class USERS
         {
-            [Column(IsPrimaryKey = true, Storage = "user_id")]
+            [Column(IsPrimaryKey = true, Storage = "user_id", IsDbGenerated = true)]
             internal int user_id;
             [Column(Storage = "user_name")]
             internal String user_name;
@@ -63,6 +63,21 @@ namespace DigitalSafetyDepositBoxClass.DBDSModel
             public USERS() 
             {
             }
+
+            public USERS resetUserInfo(String username, String password, String email, String lastName, String firstName, bool usernameIsEmail) 
+            {
+                if (!password.Equals(""))
+                    this.password = Helper.encryptPass(password,this.password_salt);
+                if(!email.Equals(""))
+                    this.email = email;
+                if(!lastName.Equals(""))
+                    this.last_name = lastName;
+                if(!firstName.Equals(""))
+                    this.first_name = firstName;
+                if (this.user_name_is_email != usernameIsEmail)
+                    this.user_name_is_email = usernameIsEmail;
+                return this;
+            }
         }
 
         /*This is the FILES class which links to the FILES Table. It uses LINQ format for this operation.
@@ -71,7 +86,7 @@ namespace DigitalSafetyDepositBoxClass.DBDSModel
         [Table(Name = "FILES")]
         public class FILES
         {
-            [Column(IsPrimaryKey = true, Storage = "file_id")]
+            [Column(IsPrimaryKey = true, Storage = "file_id", IsDbGenerated = true)]
             internal int file_id;
             [Column(Storage = "file_name")]
             internal String file_name;
@@ -154,6 +169,37 @@ namespace DigitalSafetyDepositBoxClass.DBDSModel
             return false;
         }
 
+        static internal bool testUpdateUserInformation(String username, String password, bool userIsEmail, String email, String firstName, String lastName, String confirmUsername, String confirmPassword) 
+        {
+            int userIdentification = testUserVerification(confirmUsername, confirmPassword);
+            if (userIdentification == 0) 
+            {
+                return false;
+            }
+
+            DataContext db = new DataContext(System.Configuration.ConfigurationManager.ConnectionStrings["DSDBDatabaseConnectionString"].ToString());
+            Table<USERS> Users = db.GetTable<USERS>();
+            IQueryable<USERS> usernameAvailableQuery = from user in Users where user.user_name == username select user;
+            if (usernameAvailableQuery.Count() == 0)
+            {
+                IQueryable<USERS> updateUserInformationQuery = from user in Users where user.user_id == userIdentification select user;
+                foreach (USERS user in updateUserInformationQuery) 
+                {
+                    user.resetUserInfo(username, password, email, lastName, firstName, userIsEmail);
+                }
+                try
+                {
+                    db.SubmitChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
         static internal bool testFileAdd( String containerName, String filePath, int currentUser) 
         {
             if (System.IO.File.Exists(filePath))
@@ -209,5 +255,24 @@ namespace DigitalSafetyDepositBoxClass.DBDSModel
             return null;
         }
 
+        static internal bool testAdminUnchanged() 
+        {
+            DataContext db = new DataContext(System.Configuration.ConfigurationManager.ConnectionStrings["DSDBDatabaseConnectionString"].ToString());
+            Table<USERS> Users = db.GetTable<USERS>();
+            IQueryable<USERS> adminUnchangeQuery = from user in Users where user.user_id == 1 select user;
+            foreach (USERS admin in adminUnchangeQuery) 
+            {
+                if (admin.user_name.Equals("admin"))
+                {
+                    return true;
+                }
+                if (admin.password.Equals(Helper.encryptPass("Adminpass!@123", admin.password_salt))) 
+                {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
     }
 }

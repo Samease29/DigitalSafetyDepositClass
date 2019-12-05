@@ -34,9 +34,9 @@ namespace DigitalSafetyDepositBoxClass
         {
             if (MatchEmailCheckBox.Checked == true)
             {
-                //UnameTextBox.Text = EmailTextBox.Text;
+                
                 UnameTextBox.ReadOnly = true;
-                UnameTextBox.Text = EmailtextBox.Text;
+                UnameTextBox.Text = "";
             }
 
             if (MatchEmailCheckBox.Checked == false)
@@ -62,47 +62,53 @@ namespace DigitalSafetyDepositBoxClass
             Boolean usernameIsEmail = MatchEmailCheckBox.Checked;
 
             Boolean proceed5 = Helper.isValidEmail(email);
-            if (proceed5 && usernameIsEmail)
-                username = email;
 
-            //Boolean userCharMatch = Regex.IsMatch(username, "^(?=.{5,60}$)(?=.*[\\da-zA-Z@._])");
-            Boolean userCharMatch = Helper.textCheck(username, "^(?=.{5,60}$)(?=.*[\\da-zA-Z@._])");
-            //Boolean passCharMatch = Regex.IsMatch(password, "^(?=.{12,24}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$()%&_]{2,})");
+            
             Boolean passCharMatch = Helper.textCheck(password, "^(?=.{12,24}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$()%&_]{2,})");
             Boolean firstNameCharMatch = Helper.textCheck(firstName, "^[a-zA-Z]+$");
             Boolean lastNameCharMatch = Helper.textCheck(lastName, "^[a-zA-Z]+$");
-            Boolean proceed1 = Helper.setTextBoxColor(UnameTextBox, !userCharMatch, username.Contains(" "));
+            Boolean proceed1 = false;
             Boolean proceed2 = Helper.setTextBoxColor(PassTextBox, !passCharMatch, password.Contains(" "));
             Boolean proceed3 = Helper.setTextBoxColor(FnameTextBox, !firstNameCharMatch, firstName.Contains(" "));
             Boolean proceed4 = Helper.setTextBoxColor(LnametextBox, !lastNameCharMatch, lastName.Contains(" "));
+            Helper.setTextBoxColor(EmailtextBox, proceed5, false);
 
+            if (!proceed5 && usernameIsEmail)
+            {
+                Helper.setTextBoxColor(EmailtextBox, true, true);
+                Helper.setTextBoxColor(UnameTextBox, true, true);
+                MessageBox.Show("Registration Information Not Valid! Please Try Again!", "REGISTRATION FAILED");
+                return;
+            }
+            if (usernameIsEmail) 
+            {
+                username = email;
+            }
+            if (!proceed5 && email.Equals(""))
+            {
+                proceed5 = true;
+                Boolean userCharMatch = Helper.textCheck(username, "^(?=.{5,60}$)(?=.*[\\da-zA-Z@._])");
+                proceed1 = Helper.setTextBoxColor(UnameTextBox, !userCharMatch, username.Contains(" "));
+            }
+            else 
+            {
+                Boolean userCharMatch = Helper.textCheck(username, "^(?=.{5,60}$)(?=.*[\\da-zA-Z@._])");
+                proceed1 = Helper.setTextBoxColor(UnameTextBox, !userCharMatch, username.Contains(" "));
+            }
 
-            /*
-             * if (!userCharMatch)
-            {
-                UnameTextBox.BackColor = Color.Red;
-            }
-            else
-            {
-                UnameTextBox.BackColor = Color.White;
-            }
-
-            if (!passCharMatch)
-            {
-                PassTextBox.BackColor = Color.Red;
-            }
-            else
-            {
-                PassTextBox.BackColor = Color.White;
-            }
-            /*from LoginPage.cs*/
             if (proceed1 && proceed2 && proceed3 && proceed4 && proceed5)
             {
                 if (reEnterPassword.Equals(password))
                 {
-                    Helper.setTextBoxColor(REPassTextBox, true, true);
-                    Helper.setTextBoxColor(PassTextBox, true, true);
+                    Helper.setTextBoxColor(REPassTextBox, false, false);
+                    Helper.setTextBoxColor(PassTextBox, false, false);
                     bool result = Program.registerAccount(username, password, usernameIsEmail, email, firstName, lastName);
+                    if (result == false) 
+                    {
+                        Helper.setTextBoxColor(UnameTextBox, true, true);
+                        MessageBox.Show("Username Not Available! Please Try Again!", "USERNAME TAKEN");
+                    }
+                    this.Close();
                 }
                 else
                 {

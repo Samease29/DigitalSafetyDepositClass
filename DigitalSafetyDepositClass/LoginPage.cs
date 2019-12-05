@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Mail;
 using DigitalSafetyDepositBoxClass;
 
 namespace DigitalSafetyDepositClass
@@ -52,7 +53,8 @@ namespace DigitalSafetyDepositClass
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //Hello
+            
+            Application.Run(new Regis());
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -84,6 +86,14 @@ namespace DigitalSafetyDepositClass
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            String email = "";
+            Boolean validEmail = Helper.isValidEmail(email);
+            MailAddress emailToSend = new MailAddress(email);
+            
         }
     }
 }
