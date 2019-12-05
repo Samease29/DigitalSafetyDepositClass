@@ -1,4 +1,4 @@
-﻿namespace DigitalSafetyDepositClass
+﻿namespace Profile_Interface
 {
     partial class ProfileMain
     {
@@ -239,7 +239,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ProfileMain";
             this.Text = "Profile";
-            this.Load += new System.EventHandler(this.ProfileMain_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

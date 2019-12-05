@@ -232,7 +232,6 @@
             this.FnameTextBox.Name = "FnameTextBox";
             this.FnameTextBox.Size = new System.Drawing.Size(272, 22);
             this.FnameTextBox.TabIndex = 33;
-            this.FnameTextBox.TextChanged += new System.EventHandler(this.FnameTextBox_TextChanged);
             // 
             // Regis
             // 
