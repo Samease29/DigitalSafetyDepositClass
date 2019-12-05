@@ -97,5 +97,10 @@ namespace DigitalSafetyDepositBoxClass
         {
 
         }
+
+        private void FnameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

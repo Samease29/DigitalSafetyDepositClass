@@ -142,7 +142,6 @@
             this.label3.Size = new System.Drawing.Size(384, 36);
             this.label3.TabIndex = 9;
             this.label3.Text = "Digital Safety Deposit Box";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // button3
             // 
