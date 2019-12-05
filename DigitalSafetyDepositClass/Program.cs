@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DigitalSafetyDepositBoxClass;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,22 +34,9 @@ namespace DigitalSafetyDepositClass
             currentUserID = userLoginForm.currentUser;
             Console.WriteLine(currentUserID);
             Console.ReadLine();
-
-            //DataAccess dbMethods = new DataAccess();
-            //USERS test = dbMethods._user;
-            //DataContext con = new DataContext(ConfigurationManager.AppSettings["connectionString"]);
-
-            
-            /*
-            String testPass = "Adminpass!@123";
-            Guid id = Guid.NewGuid();
-            Console.WriteLine($"Password: {testPass} and Uniqueidentifier: {id} -> Become Hash: {Helper.encryptPass(testPass, id)}");
-            Console.ReadLine();
-            Application.Run(new LoginForm());
-            Application.Run(new LoginForm());
-            */
-
-
+			
+            Application.Run(new Regis());
+            Application.Run(new ProfileMain());
         }
 
         static internal bool registerAccount(String username, String password, bool userIsEmail, String email, String firstName, String lastName) 
