@@ -110,7 +110,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 16);
             this.label1.TabIndex = 10;
-            this.label1.Text = "Username";
+            this.label1.Text = "user_name";
             // 
             // textBox5
             // 
@@ -156,7 +156,7 @@
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(107, 17);
             this.checkBox1.TabIndex = 22;
-            this.checkBox1.Text = "Match Username";
+            this.checkBox1.Text = "Match user_name";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // label6
