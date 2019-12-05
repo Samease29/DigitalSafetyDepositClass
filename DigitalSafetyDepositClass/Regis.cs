@@ -8,6 +8,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Mail;
+using DigitalSafetyDepositClass;
 
 namespace DigitalSafetyDepositBoxClass
 {
@@ -53,9 +55,30 @@ namespace DigitalSafetyDepositBoxClass
         {
             String username = UnameTextBox.Text;
             String password = PassTextBox.Text;
-            Boolean userCharMatch = Regex.IsMatch(username, "^(?=.{5,60}$)(?=.*[\\da-zA-Z@._])");
-            Boolean passCharMatch = Regex.IsMatch(password, "^(?=.{12,24}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$()%&_]{2,})");
-            if (!userCharMatch)
+            String email = EmailtextBox.Text;
+            String firstName = FnameTextBox.Text;
+            String lastName = LnametextBox.Text;
+            String reEnterPassword = REPassTextBox.Text;
+            Boolean usernameIsEmail = MatchEmailCheckBox.Checked;
+
+            Boolean proceed5 = Helper.isValidEmail(email);
+            if (proceed5 && usernameIsEmail)
+                username = email;
+
+            //Boolean userCharMatch = Regex.IsMatch(username, "^(?=.{5,60}$)(?=.*[\\da-zA-Z@._])");
+            Boolean userCharMatch = Helper.textCheck(username, "^(?=.{5,60}$)(?=.*[\\da-zA-Z@._])");
+            //Boolean passCharMatch = Regex.IsMatch(password, "^(?=.{12,24}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$()%&_]{2,})");
+            Boolean passCharMatch = Helper.textCheck(password, "^(?=.{12,24}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$()%&_]{2,})");
+            Boolean firstNameCharMatch = Helper.textCheck(firstName, "^[a-zA-Z]+$");
+            Boolean lastNameCharMatch = Helper.textCheck(lastName, "^[a-zA-Z]+$");
+            Boolean proceed1 = Helper.setTextBoxColor(UnameTextBox, !userCharMatch, username.Contains(" "));
+            Boolean proceed2 = Helper.setTextBoxColor(PassTextBox, !passCharMatch, password.Contains(" "));
+            Boolean proceed3 = Helper.setTextBoxColor(FnameTextBox, !firstNameCharMatch, firstName.Contains(" "));
+            Boolean proceed4 = Helper.setTextBoxColor(LnametextBox, !lastNameCharMatch, lastName.Contains(" "));
+
+
+            /*
+             * if (!userCharMatch)
             {
                 UnameTextBox.BackColor = Color.Red;
             }
@@ -73,32 +96,34 @@ namespace DigitalSafetyDepositBoxClass
                 PassTextBox.BackColor = Color.White;
             }
             /*from LoginPage.cs*/
-
-            if(REPassTextBox.Text == PassTextBox.Text)
+            if (proceed1 && proceed2 && proceed3 && proceed4 && proceed5)
             {
-                REPassTextBox.BackColor = Color.White;
-                PassTextBox.BackColor = Color.White;
+                if (reEnterPassword.Equals(password))
+                {
+                    Helper.setTextBoxColor(REPassTextBox, true, true);
+                    Helper.setTextBoxColor(PassTextBox, true, true);
+                    bool result = Program.registerAccount(username, password, usernameIsEmail, email, firstName, lastName);
+                }
+                else
+                {
+                    Helper.setTextBoxColor(REPassTextBox, false, false);
+                    Helper.setTextBoxColor(PassTextBox, false, false);
+                }
             }
-            else
+            else 
             {
-                REPassTextBox.BackColor = Color.Red;
-                PassTextBox.BackColor = Color.Red;
-            }
-
-            if (MatchEmailCheckBox.Checked == true) 
-            { 
-                
+                MessageBox.Show("Registration Information Not Valid! Please Try Again!", "REGISTRATION FAILED");
             }
 
 
         }
 
-        private void FnameTextBox_TextChanged(object sender, EventArgs e)
+        private void FnameTextBox_TextChanged_1(object sender, EventArgs e)
         {
 
         }
 
-        private void FnameTextBox_TextChanged(object sender, EventArgs e)
+        private void LnametextBox_TextChanged(object sender, EventArgs e)
         {
 
         }

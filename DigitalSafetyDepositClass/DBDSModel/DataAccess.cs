@@ -49,7 +49,20 @@ namespace DigitalSafetyDepositBoxClass.DBDSModel
             [Column(Storage = "void_ind")]
             internal bool void_ind;
 
+            public USERS(String username, String password, Guid passwordSalt, String email, String lastName, String firstName, bool usernameIsEmail)
+            {
+                this.user_name = username;
+                this.password = password;
+                this.password_salt = passwordSalt;
+                this.email = email;
+                this.last_name = lastName;
+                this.first_name = firstName;
+                this.user_name_is_email = usernameIsEmail;
+            }
 
+            public USERS() 
+            {
+            }
         }
 
         /*This is the FILES class which links to the FILES Table. It uses LINQ format for this operation.
@@ -64,6 +77,8 @@ namespace DigitalSafetyDepositBoxClass.DBDSModel
             internal String file_name;
             [Column(Storage = "file_contents")]
             internal Byte[] file_contents;
+            [Column(Storage = "file_path")]
+            internal String file_path;
             [Column(Storage = "type")]
             internal String type;
             [Column(Storage = "container_name")]
@@ -72,6 +87,7 @@ namespace DigitalSafetyDepositBoxClass.DBDSModel
             internal int user_id;
             [Column(Storage = "void_ind")]
             internal bool void_ind;
+            
         }
 
         static internal int testUserVerification(String username, String password)
@@ -115,23 +131,82 @@ namespace DigitalSafetyDepositBoxClass.DBDSModel
         }
 
 
-        static internal void testUserRegistation(String username)
+        static internal bool testUserRegistation(String username, String password, bool userIsEmail, String email, String firstName, String lastName)
         {
             DataContext db = new DataContext(System.Configuration.ConfigurationManager.ConnectionStrings["DSDBDatabaseConnectionString"].ToString());
             Table<USERS> Users = db.GetTable<USERS>();
-
             IQueryable<USERS> usernameAvailableQuery = from user in Users where user.user_name == username select user;
             if (usernameAvailableQuery.Count() == 0)
-            { 
-                
+            {
+                Guid passwordSalt = Guid.NewGuid();
+                USERS user_add = new USERS(username, Helper.encryptPass(password, passwordSalt), passwordSalt, email, lastName, firstName, userIsEmail);
+                Users.InsertOnSubmit(user_add);
+                try
+                {
+                    db.SubmitChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
             }
+            return false;
         }
 
-        static internal bool TestFileAdd(String fileName, String containerName, String filePath) 
+        static internal bool testFileAdd( String containerName, String filePath, int currentUser) 
         {
-            byte[] bytesToAdd = System.IO.File.ReadAllBytes(filePath);
+            if (System.IO.File.Exists(filePath))
+            {
 
-            return true;
+
+                DataContext db = new DataContext(System.Configuration.ConfigurationManager.ConnectionStrings["DSDBDatabaseConnectionString"].ToString());
+                Table<FILES> Files = db.GetTable<FILES>();
+
+                IQueryable<FILES> filePathUniqueQuery = from file in Files where file.file_path == filePath select file;
+                if (filePathUniqueQuery.Count() == 0) 
+                {
+                    FILES file_add = new FILES();
+                    file_add.container_name = containerName;
+                    file_add.file_name = System.IO.Path.GetFileName(filePath);
+                    file_add.file_path = filePath;
+                    file_add.file_contents = System.IO.File.ReadAllBytes(filePath);
+                    file_add.type = Path.GetExtension(filePath);
+                    file_add.user_id = currentUser;
+                    if (containerName.Equals("") || containerName.ToLower().Equals("public"))
+                    {
+                        file_add.container_name = "Public";
+                    }
+                    Files.InsertOnSubmit(file_add);
+                    try
+                    {
+                        db.SubmitChanges();
+                        return true;
+                    }
+                    catch (Exception e)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return false;
+        }
+
+        static internal FILES testFileSearch(String fileName, int currentUser) 
+        {
+            DataContext db = new DataContext(System.Configuration.ConfigurationManager.ConnectionStrings["DSDBDatabaseConnectionString"].ToString());
+            Table<FILES> Files = db.GetTable<FILES>();
+            IQueryable<FILES> searchFileNameQuery = from file in Files where file.file_name == fileName && file.user_id == currentUser || file.container_name == "Public" select file;
+            foreach (FILES file_found in searchFileNameQuery) 
+            {
+                return file_found;
+            }
+            return null;
+        }
+
+        static internal FILES testFileDelete(String fileName, int currentUser) 
+        {
+            return null;
         }
 
     }

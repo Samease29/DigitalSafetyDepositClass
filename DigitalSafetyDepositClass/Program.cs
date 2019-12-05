@@ -51,9 +51,14 @@ namespace DigitalSafetyDepositClass
 
         }
 
-        static internal void registerAccount() 
+        static internal bool registerAccount(String username, String password, bool userIsEmail, String email, String firstName, String lastName) 
         {
-            Application.Run();
+            username = Regex.Replace(username, "(\\\\n|\\\\r|'|\\/\\\\)+", "");
+            password = Regex.Replace(password, "(\\\\n|\\\\r|'|\\/\\\\)+", "");
+            email = Regex.Replace(email, "(\\\\n|\\\\r|'|\\/\\\\)+", "");
+            firstName = Regex.Replace(firstName, "(\\\\n|\\\\r|'|\\/\\\\)+", "");
+            lastName = Regex.Replace(lastName, "(\\\\n|\\\\r|'|\\/\\\\)+", "");
+            return DataAccess.testUserRegistation(username, password, userIsEmail, email, firstName, lastName);
         }
 
         static internal int verifyAccount(String username, String password) 

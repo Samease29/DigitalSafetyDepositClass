@@ -29,7 +29,8 @@ namespace DigitalSafetyDepositClass
             Boolean proceed1 = Helper.setTextBoxColor(textBox1, !userCharMatch, user_name.Contains(" "));
             Boolean proceed2 = Helper.setTextBoxColor(textBox2, !passCharMatch, password.Contains(" "));
 
-            if(proceed1 & proceed2){
+            if (proceed1 & proceed2)
+            {
                 int result = Program.verifyAccount(user_name, password);
                 if (result != 0)
                 {
@@ -42,6 +43,10 @@ namespace DigitalSafetyDepositClass
                     Helper.setTextBoxColor(textBox2, false, false);
                     MessageBox.Show("Username or Password Not Valid! Please Try Again!", "LOGIN FAILED");
                 }
+            }
+            else
+            {
+                MessageBox.Show("Username or Password Not Valid! Please Try Again!", "LOGIN FAILED");
             }
         }
 

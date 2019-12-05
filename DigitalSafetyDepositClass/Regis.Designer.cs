@@ -64,7 +64,7 @@
             // CancelButton
             // 
             this.CancelButton.Location = new System.Drawing.Point(517, 602);
-            this.CancelButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CancelButton.Margin = new System.Windows.Forms.Padding(4);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(100, 28);
             this.CancelButton.TabIndex = 49;
@@ -76,7 +76,7 @@
             // 
             this.ConfirmButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ConfirmButton.Location = new System.Drawing.Point(389, 602);
-            this.ConfirmButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ConfirmButton.Margin = new System.Windows.Forms.Padding(4);
             this.ConfirmButton.Name = "ConfirmButton";
             this.ConfirmButton.Size = new System.Drawing.Size(100, 28);
             this.ConfirmButton.TabIndex = 48;
@@ -88,7 +88,7 @@
             // 
             this.MatchEmailCheckBox.AutoSize = true;
             this.MatchEmailCheckBox.Location = new System.Drawing.Point(476, 428);
-            this.MatchEmailCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MatchEmailCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.MatchEmailCheckBox.Name = "MatchEmailCheckBox";
             this.MatchEmailCheckBox.Size = new System.Drawing.Size(100, 20);
             this.MatchEmailCheckBox.TabIndex = 47;
@@ -120,7 +120,7 @@
             // REPassTextBox
             // 
             this.REPassTextBox.Location = new System.Drawing.Point(288, 518);
-            this.REPassTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.REPassTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.REPassTextBox.Name = "REPassTextBox";
             this.REPassTextBox.PasswordChar = '0';
             this.REPassTextBox.Size = new System.Drawing.Size(272, 22);
@@ -140,7 +140,7 @@
             // PassTextBox
             // 
             this.PassTextBox.Location = new System.Drawing.Point(288, 457);
-            this.PassTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PassTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.PassTextBox.Name = "PassTextBox";
             this.PassTextBox.PasswordChar = '0';
             this.PassTextBox.Size = new System.Drawing.Size(272, 22);
@@ -160,7 +160,7 @@
             // UnameTextBox
             // 
             this.UnameTextBox.Location = new System.Drawing.Point(288, 393);
-            this.UnameTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UnameTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.UnameTextBox.Name = "UnameTextBox";
             this.UnameTextBox.Size = new System.Drawing.Size(272, 22);
             this.UnameTextBox.TabIndex = 40;
@@ -179,7 +179,7 @@
             // EmailtextBox
             // 
             this.EmailtextBox.Location = new System.Drawing.Point(288, 335);
-            this.EmailtextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EmailtextBox.Margin = new System.Windows.Forms.Padding(4);
             this.EmailtextBox.Name = "EmailtextBox";
             this.EmailtextBox.Size = new System.Drawing.Size(272, 22);
             this.EmailtextBox.TabIndex = 38;
@@ -198,10 +198,11 @@
             // LnametextBox
             // 
             this.LnametextBox.Location = new System.Drawing.Point(288, 276);
-            this.LnametextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LnametextBox.Margin = new System.Windows.Forms.Padding(4);
             this.LnametextBox.Name = "LnametextBox";
             this.LnametextBox.Size = new System.Drawing.Size(272, 22);
             this.LnametextBox.TabIndex = 36;
+            this.LnametextBox.TextChanged += new System.EventHandler(this.LnametextBox_TextChanged);
             // 
             // label2
             // 
@@ -228,10 +229,11 @@
             // FnameTextBox
             // 
             this.FnameTextBox.Location = new System.Drawing.Point(288, 215);
-            this.FnameTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FnameTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.FnameTextBox.Name = "FnameTextBox";
             this.FnameTextBox.Size = new System.Drawing.Size(272, 22);
             this.FnameTextBox.TabIndex = 33;
+            this.FnameTextBox.TextChanged += new System.EventHandler(this.FnameTextBox_TextChanged_1);
             // 
             // Regis
             // 
@@ -257,7 +259,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.FnameTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Regis";
             this.Text = "Registation";
             this.ResumeLayout(false);

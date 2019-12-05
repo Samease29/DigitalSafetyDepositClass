@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.Common;
 using System.Security.Cryptography;
 using System.Text;
+using System.Net.Mail;
 using Jose;
 
 namespace DigitalSafetyDepositBoxClass
@@ -39,13 +40,29 @@ namespace DigitalSafetyDepositBoxClass
          * the password and converts them to a special hash for the user. You don't ever need to change this, just
          * call it where necessary.
          */
-        static internal String encryptPass(String pass, Guid salt) 
+        static internal String encryptPass(String pass, Guid salt)
         {
             byte[] passBytes = System.Text.Encoding.ASCII.GetBytes(pass);
             byte[] saltBytes = salt.ToByteArray();
             HMAC prf = new HMACSHA512();
-            byte[] hash = PBKDF2.DeriveKey(passBytes, saltBytes,2000,256,prf);
+            byte[] hash = PBKDF2.DeriveKey(passBytes, saltBytes, 2000, 256, prf);
             return Convert.ToBase64String(hash);
         }
+
+        static internal bool isValidEmail(String email)
+        {
+            if (email.Equals(""))
+                return false;
+            try
+            {
+                MailAddress realEmail = new MailAddress(email);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
     }
 }
