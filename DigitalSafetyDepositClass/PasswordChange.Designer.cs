@@ -1,4 +1,4 @@
-﻿namespace Profile_Interface
+﻿namespace DigitalSafetyDepositClass
 {
     partial class PasswordChange
     {
@@ -39,6 +39,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.SupportBt = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // CurrentPassTextbox
@@ -144,11 +145,26 @@
             this.textBox4.Size = new System.Drawing.Size(107, 20);
             this.textBox4.TabIndex = 30;
             // 
+            // SupportBt
+            // 
+            this.SupportBt.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SupportBt.ForeColor = System.Drawing.Color.Black;
+            this.SupportBt.Location = new System.Drawing.Point(555, 47);
+            this.SupportBt.Margin = new System.Windows.Forms.Padding(2);
+            this.SupportBt.Name = "SupportBt";
+            this.SupportBt.Size = new System.Drawing.Size(34, 37);
+            this.SupportBt.TabIndex = 31;
+            this.SupportBt.Text = "?";
+            this.SupportBt.UseVisualStyleBackColor = true;
+            this.SupportBt.Click += new System.EventHandler(this.SupportBt_Click);
+            // 
             // PasswordChange
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(622, 414);
+            this.Controls.Add(this.SupportBt);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -160,6 +176,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "PasswordChange";
             this.Text = "PasswordChange";
             this.Load += new System.EventHandler(this.PasswordChange_Load);
@@ -181,5 +198,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button SupportBt;
     }
 }

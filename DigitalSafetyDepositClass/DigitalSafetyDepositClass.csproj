@@ -87,8 +87,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="InformationChange.resx">
+      <DependentUpon>InformationChange.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginPage.resx">
       <DependentUpon>LoginPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PasswordChange.resx">
+      <DependentUpon>PasswordChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProfileMain.resx">
+      <DependentUpon>ProfileMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -100,6 +109,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+<<<<<<< HEAD
+    <EmbeddedResource Include="Regis.resx">
+      <DependentUpon>Regis.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="DataClasses1.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>DataClasses1.designer.cs</LastGenOutput>

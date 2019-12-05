@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Profile_Interface
+namespace DigitalSafetyDepositClass
 {
     public partial class ProfileMain : Form
     {
@@ -73,14 +73,19 @@ namespace Profile_Interface
         private void button1_Click(object sender, EventArgs e)
         {
 
-            PasswordChange PwcWindow = new PasswordChange();
-            PwcWindow.Show();
-            this.Hide();
+            //PasswordChange PwcWindow = new PasswordChange();
+            //PwcWindow.Show();
+            //this.Hide();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void ProfileMain_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
