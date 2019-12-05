@@ -157,9 +157,9 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(441, 285);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(107, 17);
+            this.checkBox1.Size = new System.Drawing.Size(104, 17);
             this.checkBox1.TabIndex = 22;
-            this.checkBox1.Text = "Match Username";
+            this.checkBox1.Text = "Make Username";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
@@ -206,6 +206,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "InformationChange";
             this.Text = "InformationChange";
             this.Load += new System.EventHandler(this.InformationChange_Load);

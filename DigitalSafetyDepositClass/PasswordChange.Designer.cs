@@ -162,6 +162,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(622, 414);
             this.Controls.Add(this.SupportBt);
             this.Controls.Add(this.textBox4);
@@ -175,6 +176,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "PasswordChange";
             this.Text = "PasswordChange";
             this.Load += new System.EventHandler(this.PasswordChange_Load);
