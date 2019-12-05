@@ -13,7 +13,7 @@ using System.Data.Linq.Mapping;
 using System.Data.SqlClient;
 using DigitalSafetyDepositBoxClass.DBDSModel;
 
-//For the test
+//Bug Fix
 namespace DigitalSafetyDepositClass
 {
     static class Program
