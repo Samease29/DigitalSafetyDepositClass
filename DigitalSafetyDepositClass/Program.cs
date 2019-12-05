@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Text.RegularExpressions;
+using System.Configuration;
+using DigitalSafetyDepositBoxClass;
+using System.Data.Linq;
+using System.Data.Linq.Mapping;
+using System.Data.SqlClient;
+using DigitalSafetyDepositBoxClass.DBDSModel;
 
 //For the test
 namespace DigitalSafetyDepositClass
@@ -18,47 +24,30 @@ namespace DigitalSafetyDepositClass
         [STAThread]
         static void Main()
         {
+            int currentUserID = 0;
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-
-            //Application.Run(new LoginForm());
-            //Application.Run(new ProfileMain());
-            //Application.Run(new InformationChange());
-            /*Application.Run(new PasswordChange());*/
+            LoginForm userLoginForm = new LoginForm();
+            Application.Run(userLoginForm);
+            currentUserID = userLoginForm.currentUser;
+            Console.WriteLine(currentUserID);
+            Console.ReadLine();
+			
             Application.Run(new Regis());
             Application.Run(new ProfileMain());
-            //Application.Run(new InformationChange());
-            //Application.Run(new PasswordChange());
-        }
-
-        static internal bool textCheck(String text, string pattern)
-        {
-            return Regex.IsMatch(text, pattern);
-        }
-
-        static internal bool setTextBoxColor(TextBox tBox, bool match1, bool match2)
-        {
-            if (match1 | match2)
-            {
-                tBox.BackColor = Color.Red;
-                return false;
-            }
-            else
-            {
-                tBox.BackColor = Color.White;
-                return true;
-            }
-        }
-
-        static internal bool checkUser() {
-
-            return true;
         }
 
         static internal void registerAccount() 
         {
             Application.Run();
+        }
+
+        static internal int verifyAccount(String username, String password) 
+        {
+            username = Regex.Replace(username, "(\\\\n|\\\\r|'|\\/\\\\)+", "");
+            password = Regex.Replace(password, "(\\\\n|\\\\r|'|\\/\\\\)+", "");
+            return DataAccess.testUserVerification(username, password);
         }
 
         

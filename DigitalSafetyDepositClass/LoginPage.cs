@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DigitalSafetyDepositBoxClass.DBDSModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,11 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DigitalSafetyDepositBoxClass;
 
 namespace DigitalSafetyDepositClass
 {
     public partial class LoginForm : Form
     {
+        internal int currentUser = 0;
         public LoginForm()
         {
             InitializeComponent();
@@ -19,18 +22,26 @@ namespace DigitalSafetyDepositClass
 
         private void button1_Click(object sender, EventArgs e)
         {
-            String username = textBox1.Text;
+            String user_name = textBox1.Text;
             String password = textBox2.Text;
-            Boolean userCharMatch = Program.textCheck(username, "^(?=.{5,60}$)(?=.*[\\da-zA-Z@._])");
-            Boolean passCharMatch = Program.textCheck(password, "^(?=.{12,24}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$()%&_]{2,})");
-            Boolean proceed1 = Program.setTextBoxColor(textBox1, !userCharMatch, username.Contains(" "));
-            Boolean proceed2 = Program.setTextBoxColor(textBox2, !passCharMatch, password.Contains(" "));
+            Boolean userCharMatch = Helper.textCheck(user_name, "^(?=.{5,60}$)(?=.*[\\da-zA-Z@._])");
+            Boolean passCharMatch = Helper.textCheck(password, "^(?=.{12,24}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$()%&_]{2,})");
+            Boolean proceed1 = Helper.setTextBoxColor(textBox1, !userCharMatch, user_name.Contains(" "));
+            Boolean proceed2 = Helper.setTextBoxColor(textBox2, !passCharMatch, password.Contains(" "));
 
             if(proceed1 & proceed2){
-            
-            }else 
-            {
-            
+                int result = Program.verifyAccount(user_name, password);
+                if (result != 0)
+                {
+                    currentUser = result;
+                    this.Close();
+                }
+                else
+                {
+                    Helper.setTextBoxColor(textBox1, false, false);
+                    Helper.setTextBoxColor(textBox2, false, false);
+                    MessageBox.Show("Username or Password Not Valid! Please Try Again!", "LOGIN FAILED");
+                }
             }
         }
 
@@ -51,7 +62,7 @@ namespace DigitalSafetyDepositClass
 
         private void button3_Click(object sender, EventArgs e)
         {
-            String helpText = "LENGTH\n+ Usernames must be 5 - 60 characters long\n+Passwords must be 12 - 24 characters long\n\nSPECIAL CHARACTERS\n+ Usernames can contain any combination of letters\n  (Aa -Zz), numbers(0 - 9), or the following\n  characters( _@. )\n+ Passwords must contain any combination of letters\n  (Aa -Zz), numbers(0 - 9), and 2 or more of the\nfollowing characters ( !@#$()%&_ )";
+            String helpText = "LENGTH\n+ user_names must be 5 - 60 characters long\n+Passwords must be 12 - 24 characters long\n\nSPECIAL CHARACTERS\n+ user_names can contain any combination of letters\n  (Aa -Zz), numbers(0 - 9), or the following\n  characters( _@. )\n+ Passwords must contain any combination of letters\n  (Aa -Zz), numbers(0 - 9), and 2 or more of the\nfollowing characters ( !@#$()%&_ )";
             MessageBox.Show(helpText,"DIGITAL SAFETY DEPOSIT BOX HELP");
         }
 
@@ -64,12 +75,5 @@ namespace DigitalSafetyDepositClass
         {
 
         }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-        //whatever
-        //pull request 1
     }
 }

@@ -22,5 +22,16 @@ namespace DigitalSafetyDepositBoxClass.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-537UFSSA\\SQLEXPRESS;Initial Catalog=DSDBDatabase;Integrated Se" +
+            "curity=True;Pooling=False")]
+        public string DSDBDatabaseConnectionString {
+            get {
+                return ((string)(this["DSDBDatabaseConnectionString"]));
+            }
+        }
     }
 }

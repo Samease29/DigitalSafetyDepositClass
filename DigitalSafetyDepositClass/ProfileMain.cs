@@ -64,10 +64,10 @@ namespace DigitalSafetyDepositClass
             textBox3.Text = "Still your name, but your last name";
             textBox4.Text = "Your gmail/yahoo or whatever you use, if you have one";
             textBox6.Text = "This account type: Super Admin/Admin/Normal User.";
-            UserIDField.Text = "#123456";
-            //InformationChange infoChagWindow = new InformationChange();
-            //infoChagWindow.Show();
-            //this.Hide();
+            user_idField.Text = "#123456";
+            InformationChange infoChagWindow = new InformationChange();
+            infoChagWindow.Show();
+            this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)
