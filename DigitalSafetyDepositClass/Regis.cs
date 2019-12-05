@@ -85,5 +85,10 @@ namespace DigitalSafetyDepositBoxClass
                 PassTextBox.BackColor = Color.Red;
             }
         }
+
+        private void FnameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
