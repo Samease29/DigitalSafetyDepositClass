@@ -23,6 +23,7 @@ namespace DigitalSafetyDepositClass
         [STAThread]
         static void Main()
         {
+            Application.Run(new Regis());
             int currentUserID = 0;
 
             Application.EnableVisualStyles();
